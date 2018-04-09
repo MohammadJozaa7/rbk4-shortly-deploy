@@ -3,6 +3,15 @@ module.exports = function(grunt) {
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
     concat: {
+      //we did this
+      options: {
+      separator: ';'
+    },
+    dist: {
+      src: 'public/**/*.js',
+      dest: 'public/dist/built.js'
+    }
+          //we did this
     },
 
     mochaTest: {
@@ -36,7 +45,7 @@ module.exports = function(grunt) {
       scripts: {
         files: [
           'public/client/**/*.js',
-          'public/lib/**/*.js',
+          'public/lib/**/*.js'
         ],
         tasks: [
           'concat',
@@ -66,6 +75,7 @@ module.exports = function(grunt) {
 
   grunt.registerTask('server-dev', function (target) {
     grunt.task.run([ 'nodemon', 'watch' ]);
+    //we but here concat and wrk ?  why ad where
   });
 
   ////////////////////////////////////////////////////
@@ -76,8 +86,7 @@ module.exports = function(grunt) {
     'mochaTest'
   ]);
 
-  grunt.registerTask('build', [
-  ]);
+  grunt.registerTask('build', [ 'concat'  ]);
 
   grunt.registerTask('upload', function(n) {
     if (grunt.option('prod')) {
